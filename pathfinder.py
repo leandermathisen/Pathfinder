@@ -3,9 +3,11 @@ import sys
 import numpy as np
 import heapq
 
+# fscore calculator
 def heuristic(a, b):
     return np.sqrt((b[0] - a[0]) ** 2 + (b[1] - a[1]) ** 2)
 
+# A* pathfinding algorithm
 def astar(array, start, goal):
     neighbors = [(0, 1), (0, -1), (1, 0), (-1, 0), (1, 1), (1, -1), (-1, 1), (-1, -1)]
     close_set = set()
@@ -67,6 +69,7 @@ def main():
     # Declaring the margin of the boxes
     margin = 5
 
+    # Initializing some variables
     start = ()
     end = ()
     route = []
@@ -89,6 +92,7 @@ def main():
     pygame.display.set_caption("Pathfinder")
     pygame.Surface.fill(screen, BLACK)
 
+    # Declaring variables for if program is running or for shortest path to be built and presented
     running = True
     build = False
     print_route = False
@@ -132,8 +136,10 @@ def main():
                     color = GREEN
                 pygame.draw.rect(screen, color, [(margin + width) * column + margin, (margin + height) * row + margin, width, height], 0)
         
+        # Creating the build button
         pygame.draw.rect(screen, GREEN, [0, 605, 605, 95])
 
+        # When the button is pressed the shortest path is calculated
         while build:
             grid2 = np.array(grid)
             route = astar(grid2, start, end)
@@ -143,6 +149,7 @@ def main():
             route = route[::-1]
             build_complete = True
         
+        # Printing the route to the console
         if print_route:
             print(route)
             print_route = False
