@@ -3,6 +3,15 @@ import sys
 import numpy as np
 import heapq
 
+"""
+This pathfinder program was created by Leander Mathisen.
+The purpose was to find the shortest calculated route from a start point to an end point on a grid.
+The window will appear with a grid and a green button below.
+To start press anywhere on the grid to define a start point and press again anywhere on the grid to define an end point.
+Then any further presses on the grid will create obstacles that the shortest path will not be able to use.
+After finishing start and end points and obstacles, press the green button for the shortest path to be calculated and displayed.
+"""
+
 # fscore calculator
 def heuristic(a, b):
     return np.sqrt((b[0] - a[0]) ** 2 + (b[1] - a[1]) ** 2)
@@ -154,6 +163,7 @@ def main():
             print(route)
             print_route = False
         
+        # Displaying updates to the window
         pygame.display.flip()
 
 if __name__ =="__main__":
